@@ -18,13 +18,14 @@ In your `Build.PL`:
     
     $build->create_build_script;
 
-In your [FFI::Raw](https://metacpan.org/pod/FFI::Raw) script:
+In your [FFI::Platypus](https://metacpan.org/pod/FFI::Platypus) script:
 
     use Alien::ncurses;
-    use FFI::Raw;
+    use FFI::Platypus;
     
-    my($dll) = Alien::ncurses->dynamic_libs;
-    FFI::Raw->new($dll, '...', ...);
+    my $ffi = FFI::Platypus->new;
+    $ffi->lib(Alien::ncurses->dynamic_libs);
+    $ffi->attach( ... );
 
 # DESCRIPTION
 

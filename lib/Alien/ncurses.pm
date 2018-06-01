@@ -23,13 +23,14 @@ In your C<Build.PL>:
  
  $build->create_build_script;
 
-In your L<FFI::Raw> script:
+In your L<FFI::Platypus> script:
 
  use Alien::ncurses;
- use FFI::Raw;
+ use FFI::Platypus;
  
- my($dll) = Alien::ncurses->dynamic_libs;
- FFI::Raw->new($dll, '...', ...);
+ my $ffi = FFI::Platypus->new;
+ $ffi->lib(Alien::ncurses->dynamic_libs);
+ $ffi->attach( ... );
 
 =head1 DESCRIPTION
 
